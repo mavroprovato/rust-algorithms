@@ -4,23 +4,23 @@ struct UnionFind {
 }
 
 impl UnionFind {
-    fn new(size: u32) -> UnionFind {
+    fn new(size: usize) -> UnionFind {
         UnionFind {}
     }
 
-    fn union(self, p: u32, q: u32) {
+    fn union(self, p: usize, q: usize) {
 
     }
 
-    fn find(self, p: u32) -> u32 {
+    fn find(self, p: usize) -> usize {
         0
     }
 
-    fn connected(self, p: u32, q: u32) -> bool {
+    fn connected(self, p: usize, q: usize) -> bool {
         false
     }
 
-    fn components(self) -> u32 {
+    fn components(self) -> usize {
         0
     }
 }
