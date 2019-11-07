@@ -1,29 +1,6 @@
-#[derive(Debug)]
-struct UnionFind {
+mod union_find;
 
-}
-
-impl UnionFind {
-    fn new(size: usize) -> UnionFind {
-        UnionFind {}
-    }
-
-    fn union(self, p: usize, q: usize) {
-
-    }
-
-    fn find(self, p: usize) -> usize {
-        0
-    }
-
-    fn connected(self, p: usize, q: usize) -> bool {
-        false
-    }
-
-    fn components(self) -> usize {
-        0
-    }
-}
+use union_find::UnionFind;
 
 fn main() {
     let uf = UnionFind::new(2);
