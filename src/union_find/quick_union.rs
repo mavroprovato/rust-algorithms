@@ -14,12 +14,15 @@ impl UnionFindQuickUnion {
         let id_q = self.find(q);
 
         if id_p != id_q {
-            self.parents[id_p] = self.parents[id_q];
+            self.parents[id_p] = self.find(id_q);
             self.count -= 1;
         }
     }
 
     pub fn find(&self, p: usize) -> usize {
+        if p >= self.parents.len() {
+            panic!("Index {} is out of bounds", p)
+        }
         let mut id_p = p;
         while id_p != self.parents[id_p] {
             id_p = self.parents[id_p]
