@@ -1,7 +1,7 @@
 mod union_find;
 
-use union_find::UnionFindQuickFind;
-use union_find::UnionFindQuickUnion;
+use union_find::quick_find::UnionFindQuickFind;
+use union_find::quick_union::UnionFindQuickUnion;
 
 fn main() {
     let connections = [
