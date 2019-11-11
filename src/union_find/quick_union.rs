@@ -1,3 +1,5 @@
+use crate::union_find::UnionFind;
+
 #[derive(Debug)]
 pub struct UnionFindQuickUnion {
     parents: Vec<usize>,
@@ -5,11 +7,13 @@ pub struct UnionFindQuickUnion {
 }
 
 impl UnionFindQuickUnion {
-    pub fn new(size: usize) -> UnionFindQuickUnion {
+    pub fn new(size: usize) -> Self {
         UnionFindQuickUnion { parents: (0..size).collect(), count: size }
     }
+}
 
-    pub fn union(&mut self, p: usize, q: usize) {
+impl UnionFind for UnionFindQuickUnion {
+    fn union(&mut self, p: usize, q: usize) {
         let id_p = self.find(p);
         let id_q = self.find(q);
 
@@ -19,7 +23,7 @@ impl UnionFindQuickUnion {
         }
     }
 
-    pub fn find(&self, p: usize) -> usize {
+    fn find(&self, p: usize) -> usize {
         if p >= self.parents.len() {
             panic!("Index {} is out of bounds", p)
         }
@@ -31,11 +35,11 @@ impl UnionFindQuickUnion {
         id_p
     }
 
-    pub fn connected(&self, p: usize, q: usize) -> bool {
+    fn connected(&self, p: usize, q: usize) -> bool {
         self.find(p) == self.find(q)
     }
 
-    pub fn component_count(&self) -> usize {
+    fn component_count(&self) -> usize {
         self.count
     }
 }
