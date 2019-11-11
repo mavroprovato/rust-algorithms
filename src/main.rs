@@ -20,7 +20,7 @@ fn main() {
     test_union_find(&connections, &mut uf);
 }
 
-fn test_union_find(connections: &[(usize, usize)], uf: &mut dyn UnionFind) {
+fn test_union_find(connections: &[(usize, usize)], uf: &mut impl UnionFind) {
     for &(first, second) in connections.iter() {
         let connected_before = uf.connected(first, second);
         let id_first_before = uf.find(first);
