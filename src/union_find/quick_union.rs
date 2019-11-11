@@ -6,13 +6,11 @@ pub struct UnionFindQuickUnion {
     count: usize
 }
 
-impl UnionFindQuickUnion {
-    pub fn new(size: usize) -> Self {
+impl UnionFind for UnionFindQuickUnion {
+    fn new(size: usize) -> Self {
         UnionFindQuickUnion { parents: (0..size).collect(), count: size }
     }
-}
 
-impl UnionFind for UnionFindQuickUnion {
     fn union(&mut self, p: usize, q: usize) {
         let id_p = self.find(p);
         let id_q = self.find(q);

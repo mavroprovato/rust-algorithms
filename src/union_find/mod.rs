@@ -1,4 +1,5 @@
 pub trait UnionFind {
+    fn new(size: usize) -> Self;
     fn union(&mut self, p: usize, q: usize);
     fn find(&self, p: usize) -> usize;
     fn connected(&self, p: usize, q: usize) -> bool;
