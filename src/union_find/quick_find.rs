@@ -8,7 +8,7 @@ pub struct UnionFindQuickFind {
 
 impl UnionFind for UnionFindQuickFind {
     fn new(size: usize) -> Self {
-        UnionFindQuickFind { component_ids: (0..size).collect(), count: size }
+        Self { component_ids: (0..size).collect(), count: size }
     }
 
     fn union(&mut self, p: usize, q: usize) {
