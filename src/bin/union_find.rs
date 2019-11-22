@@ -1,8 +1,6 @@
-mod union_find;
-
-use union_find::UnionFind;
-use union_find::quick_find::UnionFindQuickFind;
-use union_find::quick_union::UnionFindQuickUnion;
+use rust_algorithms::union_find::UnionFind;
+use rust_algorithms::union_find::quick_find::UnionFindQuickFind;
+use rust_algorithms::union_find::quick_union::UnionFindQuickUnion;
 
 fn main() {
     let connections = [
