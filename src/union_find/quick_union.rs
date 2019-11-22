@@ -8,6 +8,9 @@ pub struct UnionFindQuickUnion {
 
 impl UnionFind for UnionFindQuickUnion {
     fn new(size: usize) -> Self {
+        if size == 0 {
+            panic!("Size should be greater that zero");
+        }
         Self { parents: (0..size).collect(), count: size }
     }
 
