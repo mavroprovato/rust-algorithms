@@ -61,7 +61,6 @@ fn quick_union_union_already_connected() {
 }
 
 fn test_component_count<T: UnionFind>(uf: &T, size: usize) {
-    let uf = UnionFindQuickFind::new(size);
     assert_eq!(size, uf.component_count());
 }
 
