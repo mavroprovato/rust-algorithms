@@ -18,6 +18,13 @@ fn main() {
         Ok(v) => v,
         Err(e) => panic!("Cannot open input file: {:?}", e),
     };
+    let uf = read_union_find(file);
+
+    println!("{:?}", uf);
+}
+
+fn read_union_find(file: File) -> UnionFindQuickFind {
+    // Open the input file
     let reader = BufReader::new(file);
     let mut lines = reader.lines();
 
@@ -30,7 +37,7 @@ fn main() {
         None => panic!("File is empty"),
     };
 
-    // Read the file line by line
+    // Read the file line by line and connect components
     let mut uf = UnionFindQuickFind::new(size);
     for line in lines {
         let components: Vec<usize> = line.unwrap().split_whitespace().map(
@@ -41,11 +48,11 @@ fn main() {
                 }
             }
         ).collect();
-        if args.len() < 2 {
+        if components.len() < 2 {
             panic!("Cannot parse line {}: need at least two integers")
         }
         uf.union(components[0], components[1])
     }
 
-    println!("{:?}", uf);
+    uf
 }
