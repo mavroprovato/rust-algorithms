@@ -4,7 +4,7 @@ use std::io::BufReader;
 use std::io::prelude::*;
 
 use rust_algorithms::union_find::UnionFind;
-use rust_algorithms::union_find::quick_union::UnionFindQuickUnion;
+use rust_algorithms::union_find::quick_union::QuickUnion;
 
 #[derive(Debug)]
 /// Represents a percolation grid
@@ -17,7 +17,7 @@ struct Percolation {
     sites: Vec<bool>,
     /// The union find data structure that can quickly answer queries whether this grid percolates
     /// or not
-    percolation_uf: UnionFindQuickUnion,
+    percolation_uf: QuickUnion,
 }
 
 impl Percolation {
@@ -36,7 +36,7 @@ impl Percolation {
             rows,
             columns,
             sites: vec![false; rows * columns],
-            percolation_uf: UnionFindQuickUnion::new(rows * columns + 2),
+            percolation_uf: QuickUnion::new(rows * columns + 2),
         }
     }
 

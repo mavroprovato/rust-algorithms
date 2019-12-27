@@ -6,7 +6,7 @@ use crate::union_find::UnionFind;
 /// means that they belong to the same connected component. This implementation improves the
 /// quick-find implementation by keeping track of the size of each tree and linking the root of the
 /// smaller tree to the root of the larger tree
-pub struct UnionFindWeightedQuickUnion {
+pub struct WeightedQuickUnion {
     /// Contains the parent of the component
     parents: Vec<usize>,
     /// Contains the size of each component
@@ -15,7 +15,7 @@ pub struct UnionFindWeightedQuickUnion {
     count: usize,
 }
 
-impl UnionFind for UnionFindWeightedQuickUnion {
+impl UnionFind for WeightedQuickUnion {
     /// Initialize the quick union union find data structure with `size` objects. The initialization
     /// has linear complexity (O(N)).
     ///

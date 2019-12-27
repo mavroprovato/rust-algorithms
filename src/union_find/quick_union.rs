@@ -4,14 +4,14 @@ use crate::union_find::UnionFind;
 /// The quick-find implementation of the union find data structure. Each component points to its
 /// parent, so we have a tree like structure. If two components have the same parent, this means
 /// that they belong to the same connected component.
-pub struct UnionFindQuickUnion {
+pub struct QuickUnion {
     /// Contains the parent of the component
     parents: Vec<usize>,
     /// The number of components
     count: usize,
 }
 
-impl UnionFind for UnionFindQuickUnion {
+impl UnionFind for QuickUnion {
     /// Initialize the quick union union find data structure with `size` objects. The initialization
     /// has linear complexity (O(N)).
     ///

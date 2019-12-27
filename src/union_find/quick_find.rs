@@ -3,7 +3,7 @@ use crate::union_find::UnionFind;
 #[derive(Debug)]
 /// The quick-find implementation of the union find data structure. We keep track of each component
 /// identifier, so if two components have the same identifier they belong to the same component.
-pub struct UnionFindQuickFind {
+pub struct QuickFind {
     /// The component identifiers. Two components are connected if they have the same component
     /// identifier
     component_ids: Vec<usize>,
@@ -11,7 +11,7 @@ pub struct UnionFindQuickFind {
     count: usize,
 }
 
-impl UnionFind for UnionFindQuickFind {
+impl UnionFind for QuickFind {
     /// Initialize the quick find union find data structure with `size` objects.  The initialization
     /// has linear complexity (O(N)).
     ///
