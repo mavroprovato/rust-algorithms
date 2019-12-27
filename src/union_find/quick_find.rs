@@ -12,7 +12,8 @@ pub struct UnionFindQuickFind {
 }
 
 impl UnionFind for UnionFindQuickFind {
-    /// Initialize the quick find union find data structure with `size` objects
+    /// Initialize the quick find union find data structure with `size` objects.  The initialization
+    /// has linear complexity (O(N)).
     ///
     /// # Arguments
     ///
@@ -24,7 +25,7 @@ impl UnionFind for UnionFindQuickFind {
         Self { component_ids: (0..size).collect(), count: size }
     }
 
-    /// Connect two components. It is a linear time operation (O(n))
+    /// Connect two components. It is a linear time operation (O(N)).
     ///
     /// # Arguments
     ///
@@ -48,7 +49,7 @@ impl UnionFind for UnionFindQuickFind {
         self.count -= 1;
     }
 
-    /// Return the identifier of a component. It is a constant time operation (O(1))
+    /// Return the identifier of a component. It is a constant time operation (O(1)).
     ///
     /// * `p`: The index of the component
     fn find(&self, p: usize) -> usize {

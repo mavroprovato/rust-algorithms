@@ -1,17 +1,21 @@
 use crate::union_find::UnionFind;
 
 #[derive(Debug)]
-/// The quick-find implementation of the union find data structure. Each component points to its
-/// parent, so we have a tree like structure. If two components have the same parent, this means
-/// that they belong to the same connected component.
-pub struct UnionFindQuickUnion {
+/// The weighted quick-find implementation of the union find data structure. Each component points
+/// to its parent, so we have a tree like structure. If two components have the same parent, this
+/// means that they belong to the same connected component. This implementation improves the
+/// quick-find implementation by keeping track of the size of each tree and linking the root of the
+/// smaller tree to the root of the larger tree
+pub struct UnionFindWeightedQuickUnion {
     /// Contains the parent of the component
     parents: Vec<usize>,
+    /// Contains the size of each component
+    size: Vec<usize>,
     /// The number of components
     count: usize,
 }
 
-impl UnionFind for UnionFindQuickUnion {
+impl UnionFind for UnionFindWeightedQuickUnion {
     /// Initialize the quick union union find data structure with `size` objects. The initialization
     /// has linear complexity (O(N)).
     ///
@@ -22,11 +26,10 @@ impl UnionFind for UnionFindQuickUnion {
         if size == 0 {
             panic!("Size should be greater that zero");
         }
-        Self { parents: (0..size).collect(), count: size }
+        Self { parents: (0..size).collect(), size: vec![1; size], count: size }
     }
 
-    /// Connect two components. It is a linear time operation (O(N)) in the worst case because trees
-    /// can get tall.
+    /// Connect two components. It is a logarithmic time operation (O(lgN)).
     ///
     /// # Arguments
     ///
@@ -36,14 +39,23 @@ impl UnionFind for UnionFindQuickUnion {
         let id_p = self.find(p);
         let id_q = self.find(q);
 
-        if id_p != id_q {
-            self.parents[id_p] = self.find(id_q);
-            self.count -= 1;
+        if id_p == id_q {
+            return;
         }
+
+        if self.size[id_p] < self.size[id_q] {
+            self.parents[id_p] = id_q;
+            self.size[id_q] += self.size[id_p];
+        } else {
+            self.parents[id_q] = id_p;
+            self.size[id_p] += self.size[id_q];
+        }
+
+        self.count -= 1;
     }
 
-    /// Return the identifier of a component. It is a linear time operation (O(N)) in the worst case
-    /// because trees can get tall.
+    /// Return the identifier of a component. It is a linear time operation (O(n)) in the worst case
+    /// because trees can get tall
     ///
     /// * `p`: The index of the component
     fn find(&self, p: usize) -> usize {
@@ -59,7 +71,7 @@ impl UnionFind for UnionFindQuickUnion {
     }
 
     /// Return `true` if the components are connected, `false` otherwise. It is a linear time
-    /// operation (O(N)).
+    /// operation (O(n)).
     ///
     /// * `p`: The index of the first component
     /// * `q`: The index of the second component
@@ -72,4 +84,3 @@ impl UnionFind for UnionFindQuickUnion {
         self.count
     }
 }
-
