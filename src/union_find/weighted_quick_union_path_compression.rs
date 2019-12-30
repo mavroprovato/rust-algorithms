@@ -1,11 +1,14 @@
 use crate::union_find::UnionFind;
 
 #[derive(Debug)]
-/// The weighted quick-find implementation of the union find data structure. Each component points
-/// to its parent, so we have a tree like structure. If two components have the same parent, this
-/// means that they belong to the same connected component. This implementation improves the
-/// quick-find implementation by keeping track of the size of each tree and linking the root of the
-/// smaller tree to the root of the larger tree.
+/// The weighted quick-find implementation of the union find data structure, with path compression.
+/// Each component points to its parent, so we have a tree like structure. If two components have
+/// the same parent, this means that they belong to the same connected component. This
+/// implementation improves the quick-find implementation by keeping track of the size of each tree
+/// and linking the root of the smaller tree to the root of the larger tree. Additionally, just
+/// after computing the root of an element, we set each of the elements in the path to point to that
+/// root. Any sequence of M union-find operations on N objects makes <= c(N + M lg*N) array
+/// accesses.
 pub struct WeightedQuickUnionPathCompression {
     /// Contains the parent of the component
     parents: Vec<usize>,
