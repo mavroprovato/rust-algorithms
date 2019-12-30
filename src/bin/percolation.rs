@@ -138,7 +138,7 @@ impl Percolation {
     }
 
     /// Returns true if the grid percolates, false otherwise
-    fn percolates(&self) -> bool {
+    fn percolates(&mut self) -> bool {
         self.percolation_uf.connected(0, self.columns * self.rows + 1)
     }
 }
@@ -156,7 +156,7 @@ fn main() {
         Ok(v) => v,
         Err(e) => panic!("Cannot open input file: {:?}", e),
     };
-    let percolation = Percolation::from_file(file);
+    let mut percolation = Percolation::from_file(file);
 
     println!("Percolates: {:?}", percolation.percolates());
 }

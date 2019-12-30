@@ -13,7 +13,7 @@ fn quick_find_not_zero() {
 #[should_panic]
 fn quick_find_out_of_bounds() {
     let size = 10;
-    test_out_of_bounds(&QuickFind::new(size), size);
+    test_out_of_bounds(&mut QuickFind::new(size), size);
 }
 
 #[test]

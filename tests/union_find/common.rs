@@ -4,7 +4,7 @@ pub fn test_component_count<T: UnionFind>(uf: &T, size: usize) {
     assert_eq!(size, uf.count());
 }
 
-pub fn test_out_of_bounds<T: UnionFind>(uf: &T, size: usize) {
+pub fn test_out_of_bounds<T: UnionFind>(uf: &mut T, size: usize) {
     uf.find(size);
 }
 

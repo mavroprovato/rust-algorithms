@@ -12,7 +12,7 @@ pub struct QuickUnion {
 }
 
 impl UnionFind for QuickUnion {
-    /// Initialize the quick union union find data structure with `size` objects. The initialization
+    /// Initialize the quick union union-find data structure with `size` objects. The initialization
     /// has linear complexity (O(N)).
     ///
     /// # Arguments
@@ -46,7 +46,7 @@ impl UnionFind for QuickUnion {
     /// because trees can get tall.
     ///
     /// * `p`: The index of the component
-    fn find(&self, p: usize) -> usize {
+    fn find(&mut self, p: usize) -> usize {
         if p >= self.parents.len() {
             panic!("Index {} is out of bounds", p)
         }
@@ -63,7 +63,7 @@ impl UnionFind for QuickUnion {
     ///
     /// * `p`: The index of the first component
     /// * `q`: The index of the second component
-    fn connected(&self, p: usize, q: usize) -> bool {
+    fn connected(&mut self, p: usize, q: usize) -> bool {
         self.find(p) == self.find(q)
     }
 

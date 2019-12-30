@@ -6,7 +6,7 @@ use crate::union_find::UnionFind;
 /// means that they belong to the same connected component. This implementation improves the
 /// quick-find implementation by keeping track of the size of each tree and linking the root of the
 /// smaller tree to the root of the larger tree.
-pub struct WeightedQuickUnion {
+pub struct WeightedQuickUnionPathCompression {
     /// Contains the parent of the component
     parents: Vec<usize>,
     /// Contains the size of each component
@@ -15,9 +15,9 @@ pub struct WeightedQuickUnion {
     count: usize,
 }
 
-impl UnionFind for WeightedQuickUnion {
-    /// Initialize the weighted quick union union-find data structure with `size` objects. The
-    /// initialization has linear complexity (O(N)).
+impl UnionFind for WeightedQuickUnionPathCompression {
+    /// Initialize the quick union with path compression union-find data structure with `size`
+    /// objects. The initialization has linear complexity (O(N)).
     ///
     /// # Arguments
     ///
@@ -62,12 +62,19 @@ impl UnionFind for WeightedQuickUnion {
         if p >= self.parents.len() {
             panic!("Index {} is out of bounds", p)
         }
+        let mut id_root = p;
+        while id_root != self.parents[id_root] {
+            id_root = self.parents[id_root]
+        }
+        // Set the id of every node in the path to point to the root
         let mut id_p = p;
-        while id_p != self.parents[id_p] {
-            id_p = self.parents[id_p]
+        while id_p != id_root {
+            let new_p = self.parents[id_p];
+            self.parents[id_p] = id_root;
+            id_p = new_p;
         }
 
-        id_p
+        id_root
     }
 
     /// Return `true` if the components are connected, `false` otherwise. It is a linear time

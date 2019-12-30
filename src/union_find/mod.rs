@@ -21,13 +21,13 @@ pub trait UnionFind {
     /// Return the identifier of a component
     ///
     /// * `p`: The index of the component
-    fn find(&self, p: usize) -> usize;
+    fn find(&mut self, p: usize) -> usize;
 
     /// Return `true` if the components are connected, `false` otherwise
     ///
     /// * `p`: The index of the first component
     /// * `q`: The index of the second component
-    fn connected(&self, p: usize, q: usize) -> bool;
+    fn connected(&mut self, p: usize, q: usize) -> bool;
 
     /// Return the number of components in the structure
     fn count(&self) -> usize;
@@ -36,3 +36,4 @@ pub trait UnionFind {
 pub mod quick_find;
 pub mod quick_union;
 pub mod weighted_quick_union;
+pub mod weighted_quick_union_path_compression;

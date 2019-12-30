@@ -12,7 +12,7 @@ pub struct QuickFind {
 }
 
 impl UnionFind for QuickFind {
-    /// Initialize the quick find union find data structure with `size` objects.  The initialization
+    /// Initialize the quick find union-find data structure with `size` objects.  The initialization
     /// has linear complexity (O(N)).
     ///
     /// # Arguments
@@ -52,7 +52,7 @@ impl UnionFind for QuickFind {
     /// Return the identifier of a component. It is a constant time operation (O(1)).
     ///
     /// * `p`: The index of the component
-    fn find(&self, p: usize) -> usize {
+    fn find(&mut self, p: usize) -> usize {
         if p >= self.component_ids.len() {
             panic!("Index {} is out of bounds", p)
         }
@@ -65,7 +65,7 @@ impl UnionFind for QuickFind {
     ///
     /// * `p`: The index of the first component
     /// * `q`: The index of the second component
-    fn connected(&self, p: usize, q: usize) -> bool {
+    fn connected(&mut self, p: usize, q: usize) -> bool {
         self.find(p) == self.find(q)
     }
 

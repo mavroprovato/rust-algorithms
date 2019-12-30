@@ -3,4 +3,5 @@ mod union_find {
     mod quick_find;
     mod quick_union;
     mod weighted_quick_union;
+    mod weighted_quick_union_path_compression;
 }

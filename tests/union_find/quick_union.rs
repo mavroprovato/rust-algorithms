@@ -13,7 +13,7 @@ fn quick_union_not_zero() {
 #[should_panic]
 fn quick_union_out_of_bounds() {
     let size = 10;
-    test_out_of_bounds(&QuickUnion::new(size), size);
+    test_out_of_bounds(&mut QuickUnion::new(size), size);
 }
 
 #[test]
