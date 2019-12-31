@@ -27,7 +27,9 @@ pub trait UnionFind {
     ///
     /// * `p`: The index of the first component
     /// * `q`: The index of the second component
-    fn connected(&mut self, p: usize, q: usize) -> bool;
+    fn connected(&mut self, p: usize, q: usize) -> bool {
+        self.find(p) == self.find(q)
+    }
 
     /// Return the number of components in the structure
     fn count(&self) -> usize;

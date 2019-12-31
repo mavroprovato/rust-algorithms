@@ -80,15 +80,6 @@ impl UnionFind for WeightedQuickUnionPathCompression {
         id_root
     }
 
-    /// Return `true` if the components are connected, `false` otherwise. It is a linear time
-    /// operation (O(n)).
-    ///
-    /// * `p`: The index of the first component
-    /// * `q`: The index of the second component
-    fn connected(&mut self, p: usize, q: usize) -> bool {
-        self.find(p) == self.find(q)
-    }
-
     /// Return the number of components in the structure. It is a constant time operation (O(1))
     fn count(&self) -> usize {
         self.count
